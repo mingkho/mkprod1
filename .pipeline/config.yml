@@ -14,7 +14,7 @@ stages:
   Acceptance:
     cloudFoundryDeploy: true
     cfApiEndpoint: "https://api.cf.sap.hana.ondemand.com"
-    cfOrg: "LCAP_MK"
+    cfOrg: "LCAP_int"
     cfSpace: "dev"
     cfCredentialsId: "ming-kho-cf"
     npmExecuteEndToEndTests: false
