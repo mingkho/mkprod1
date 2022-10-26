@@ -1,0 +1,52 @@
+---
+general:
+  buildTool: "mta"
+service:
+  buildToolVersion: "MBTJ8N14"
+stages:
+  Build:
+    npmExecuteLint: true
+  Additional Unit Tests:
+    npmExecuteScripts: false
+    karmaExecuteTests: false
+  Malware Scan:
+    malwareExecuteScan: true
+  Acceptance:
+    cloudFoundryDeploy: true
+    cfApiEndpoint: "https://api.cf.sap.hana.ondemand.com"
+    cfOrg: "LCAP_MK"
+    cfSpace: "dev"
+    cfCredentialsId: "ming-kho-cf"
+    npmExecuteEndToEndTests: false
+  Compliance:
+    sonarExecuteScan: false
+  Release:
+    cloudFoundryDeploy: false
+    cfApiEndpoint: ""
+    cfOrg: ""
+    cfSpace: ""
+    cfCredentialsId: ""
+    tmsUpload: false
+steps:
+  artifactPrepareVersion:
+    versioningType: "cloud_noTag"
+  npmExecuteLint:
+    failOnError: false
+  npmExecuteScripts:
+    runScripts:
+    - "test"
+  npmExecuteEndToEndTests:
+    runScript: ""
+    baseUrl: ""
+    credentialsId: ""
+  sonarExecuteScan:
+    mode: ""
+    serverUrl: ""
+    organization: ""
+    projectKey: ""
+    sonarTokenCredentialsId: ""
+  cloudFoundryDeploy:
+    mtaDeployParameters: "-f --version-rule ALL"
+  tmsUpload:
+    nodeName: ""
+    credentialsId: ""
